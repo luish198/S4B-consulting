@@ -12,7 +12,7 @@ export default function Main() {
 
     const goToLogin = (event) => {
         setLogin(!login)
-        console.log(login)
+        //console.log(login)
     }
 
     return (
