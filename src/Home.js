@@ -34,7 +34,8 @@ const [companyQuote, setCompanyQuote] = useState("")
 
     const [notification, setNotification] = useState();
     const history = useHistory();
-    const [user, setUser] = useState(null);
+    //const [user, setUser] = useState(null);
+    const [user, setUser] = useState("luis higuera");
 
 
     /*useEffect(() => {
