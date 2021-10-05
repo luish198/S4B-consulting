@@ -22,15 +22,15 @@ export default function Login() {
         //console.log(formToObject.email)
         //console.log(formToObject.password)
 
-        fetch("http://localhost:5000/users/login", {
-        //fetch("https://s4b-consulting-user-api.herokuapp.com/users/login", {
+        //fetch("http://localhost:5000/users/login", {
+        fetch("https://s4b-consulting-user-api.herokuapp.com/users/login", {
             method: "POST",
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
             },
-            "Access-Control-Allow-Origin": "http://localhost:5000",
-            //"Access-Control-Allow-Origin": "https://s4b-consulting-user-api.herokuapp.com",
+            //"Access-Control-Allow-Origin": "http://localhost:5000",
+            "Access-Control-Allow-Origin": "https://s4b-consulting-user-api.herokuapp.com",
             body: JSON.stringify(formToObject)
         })
             .then(response => {
@@ -60,8 +60,8 @@ export default function Login() {
 
 
     const logout = () => {
-        fetch("http://localhost:8080/users/logout", {
-        //fetch("https://s4b-consulting-user-api.herokuapp.com/users/logout", {
+        //fetch("http://localhost:8080/users/logout", {
+        fetch("https://s4b-consulting-user-api.herokuapp.com/users/logout", {
 
             credentials: 'include'
         })
@@ -91,15 +91,15 @@ export default function Login() {
 
     useEffect(() => {
         //console.log("from browser", document.cookie)
-        fetch("http://localhost:5000/users/me", {
-        //fetch("https://s4b-consulting-user-api.herokuapp.com/users/me", {
+        //fetch("http://localhost:5000/users/me", {
+        fetch("https://s4b-consulting-user-api.herokuapp.com/users/me", {
 
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
             },
-            "Access-Control-Allow-Origin": "http://localhost:8080"
-            //"Access-Control-Allow-Origin": "https://s4b-consulting-user-api.herokuapp.com"
+            //"Access-Control-Allow-Origin": "http://localhost:8080"
+            "Access-Control-Allow-Origin": "https://s4b-consulting-user-api.herokuapp.com"
 
             
 
