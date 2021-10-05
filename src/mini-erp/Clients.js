@@ -18,8 +18,8 @@ export default function Clients() {
 
     useEffect(() => {
 
-        fetch("http://localhost:5000/users/checkSession", { credentials: 'include' })
-            //fetch("https://s4b-consulting-user-api.herokuapp.com/users/checkSession", { credentials: 'include' })
+        //fetch("http://localhost:5000/users/checkSession", { credentials: 'include' })
+            fetch("https://s4b-consulting-user-api.herokuapp.com/users/checkSession", { credentials: 'include' })
 
             .then(response => {
                 if (response.status !== 200) {
