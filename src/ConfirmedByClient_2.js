@@ -159,15 +159,15 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
                     console.log(response);
                     if (response.status === 200) {
                         console.log("all good here...", response.status)
-                        setEmailStatus("Invoice Email Sent Successfully to the client !")
+                        setEmailConfoStatus("Invoice Email Sent Successfully to the client !")
                     } else {
                         console.log("error", response.status)
-                        setEmailStatus("Invoice Email NOT sent, Please contact your Admin Team !")
+                        setEmailConfoStatus("Invoice Email NOT sent, Please contact your Admin Team !")
                     }
                 })
                 .catch(function (error) {
                     console.log(error);
-                    setEmailStatus("Invoice Email NOT sent, Please contact your Admin Team !")
+                    setEmailConfoStatus("Invoice Email NOT sent, Please contact your Admin Team !")
                 });
         }
         //end of Function to send the email ------------------------
