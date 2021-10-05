@@ -37,7 +37,7 @@ const [companyQuote, setCompanyQuote] = useState("")
     const [user, setUser] = useState(null);
 
 
-    useEffect(() => {
+    /*useEffect(() => {
 
         //fetch("http://localhost:5000/users/checkSession", { credentials: 'include' })
             fetch("https://s4b-consulting-user-api.herokuapp.com/users/checkSession", { credentials: 'include' })
@@ -47,7 +47,7 @@ const [companyQuote, setCompanyQuote] = useState("")
                 //console.log(response.user.username)
                 setUser(response.user);
             })
-    }, [])
+    }, [])*/
 
 
 
@@ -66,7 +66,7 @@ const [companyQuote, setCompanyQuote] = useState("")
                     {/* <h1>Members Area ! V.I.P </h1> */}
 
                     {/* {notification && <h2>notification</h2>} */}
-                    {user && <p>{user.username}</p>}
+                    {/* {user && <p>{user.username}</p>} */}
                     {/* {user && <p>{user.email}</p>} */}
                     {/* {user && <p>{user.role}</p>} */}
 
