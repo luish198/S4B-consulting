@@ -116,17 +116,12 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
                 console.log(quoteData[0].PRECONFIRMATION_ID)
 
                 setSaveConfoStatus("Confirmation Saved Successfully")
-                //setLastClientId(response.data.insertId)
-                //console.log("thelatest last client id before posting the confo",lastClientId)
 
-                //postNewPreconfo()
-                //sentQuoteEmail()
-                //console.log("email sent .... ")
+                sentConfoEmail()
 
                 console.log(response.data);
                 console.log(response.status);
 
-                //setLastClientId(response.data.insertId)
 
             })
             .catch(function (error) {
@@ -140,6 +135,45 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
 
     }
     // end of create the function to get post the info to save in the DB and then send email ----------
+
+
+
+
+    //---------------------------------------------------------------------------------------------------
+
+        //Function to send the email--------------------------------
+
+        const sentConfoEmail = () => {
+            axios.post('http://localhost:8080/sent-invoice-email', {
+
+            
+                "Confirmation": confoRef,
+                "companyType": "Super Co",
+                "companyMarket": "Super Market",
+    
+                "phone": "+49176 5697 2222",
+                "message": "Welcome on Board ! please click here to confirm your quote",
+                "quoteKey": "SuperKey"
+            })
+                .then(function (response) {
+                    console.log(response);
+                    if (response.status === 200) {
+                        console.log("all good here...", response.status)
+                        setEmailStatus("Invoice Email Sent Successfully to the client !")
+                    } else {
+                        console.log("error", response.status)
+                        setEmailStatus("Invoice Email NOT sent, Please contact your Admin Team !")
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    setEmailStatus("Invoice Email NOT sent, Please contact your Admin Team !")
+                });
+        }
+        //end of Function to send the email ------------------------
+
+    //---------------------------------------------------------------------------------------------------
+
 
 
     console.log("emailstatus before return", emailConfoStatus)
