@@ -16,23 +16,13 @@ export default function MenuBar(){
     const [user, setUser] = useState(null);
     const [notification, setNotification] = useState();
 
-        //handle submit from bootstrap ----------------
-
-        const handleSubmitnav = (event) => {
-            
-            const form = event.currentTarget;
-            history.push(form.name);
-            event.preventDefault();
-        }
-        //---------------------------------------------
-
-
-
-
+       
 
         const logout = () => {
 
-            fetch("http://localhost:5000/users/logout", {
+            //fetch("http://localhost:5000/users/logout", {
+            fetch("https://s4b-consulting-user-api.herokuapp.com/users/logout", {
+
                 credentials: 'include'
             })
                 .then(response => {
@@ -63,6 +53,7 @@ export default function MenuBar(){
 
     return (
 
+        
         <Navbar bg="light" expand="lg">
                         <Navbar.Brand href="#"><img className="logo" src={s4blogo} alt="" width="60" height="60" /></Navbar.Brand>
                         <Navbar.Brand href="#">Mini ERP - S4B Consulting </Navbar.Brand>
@@ -73,27 +64,28 @@ export default function MenuBar(){
                                 style={{ maxHeight: '100px' }}
                                 navbarScroll
                             >
-                                <Nav.Link href="#" onClick={handleSubmitnav} name="Ctrlpanel">Cpanel</Nav.Link>
+                                 <Nav.Link to="/home/Ctrlpanel"    as={Link}  name="Ctrlpanel">Cpanel</Nav.Link>                                 
+                                 <Nav.Link to="/home/createquote"  as={Link}  name="create-quote" >Create an offer</Nav.Link>
 
-                                <Nav.Link href="#" onClick={handleSubmitnav} name="create-quote" >Create an offer</Nav.Link>
 
-                                <Nav.Link href="#" onClick={handleSubmitnav} name="confirm-quote">Confirm Quote</Nav.Link>
 
-                                <Nav.Link href="#" onClick={handleSubmitnav} name="reports">Reports</Nav.Link>
+                                <Nav.Link  to="/home/confirm-quote"  as={Link} name="confirm-quote">Confirm Quote</Nav.Link>
 
-                                <Nav.Link href="#" onClick={handleSubmitnav} name="products">Products</Nav.Link>
+                                <Nav.Link  to="/home/reports"  as={Link}  name="reports">Reports</Nav.Link>
+
+                                <Nav.Link  to="/home/products"  as={Link} name="products">Products</Nav.Link>
 
 
                                 <NavDropdown title="Clients" id="navbarScrollingDropdown">
-                                    <NavDropdown.Item href="#" onClick={handleSubmitnav} name="clients">Clients list</NavDropdown.Item>
+                                    <NavDropdown.Item  to="/home/clients" as={Link}  name="clients">Clients list</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action4" onClick={handleSubmitnav} name="clientCreate">Create a new client</NavDropdown.Item>
+                                    <NavDropdown.Item  to="/home/client-create" as={Link}  name="client-create">Create a new client</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action5">Client reports</NavDropdown.Item>
+                                    <NavDropdown.Item  to="/home/client-reports" as={Link} >Client reports</NavDropdown.Item>
                                 </NavDropdown>
 
                                 <NavDropdown title="Consultants" id="navbarScrollingDropdown2">
-                                    <NavDropdown.Item href="#" onClick={handleSubmitnav} name="consultants">Consultants</NavDropdown.Item>
+                                    <NavDropdown.Item href="#"  name="consultants">Consultants</NavDropdown.Item>
                                     <NavDropdown.Item href="#action4">Consultant Reports</NavDropdown.Item>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item href="#action5">Consultant details</NavDropdown.Item>
@@ -101,6 +93,12 @@ export default function MenuBar(){
 
 
                                 <Button variant="outline-success" onClick={logout}>Logout</Button>
+
+                                {user?
+                                 <Nav.Link  name="user">User: {user && user.username}</Nav.Link> : "--"
+                                }
+
+                                
 
                             </Nav>
 
@@ -119,7 +117,16 @@ export default function MenuBar(){
                         </Navbar.Collapse>
 
                     </Navbar>
+
+                    
     )
 
 
 }
+
+
+
+
+
+// Comments 
+// try to pass the user information into the menubar component instead of Login component

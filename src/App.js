@@ -6,6 +6,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
 import Home from './Home'
 import { useEffect, useState } from 'react';
+import ConfirmedByClient from './ConfirmedByClient';
+import { useParams } from 'react-router-dom'
+
+
 
 //components-----------------------------------------
 import Clients from './mini-erp/Clients'
@@ -15,6 +19,8 @@ import Consultants from './mini-erp/Consultants'
 
 
 function App() {
+
+  const [quoteData, setQuoteData] = useState("initial")
 
   //const [userInfo, setUserInfo] = useState("User Info Initial");
   function NotFound() {
@@ -30,16 +36,15 @@ function App() {
           <Main />
           <Button />
         </Route>
-        <Route exact path="/home">
+        <Route path="/home">
           <Home />
         </Route>
-        <Route exact path="/consultants">
-          <Consultants />
+        <Route path="/orderconfirmed">
+          <ConfirmedByClient />
         </Route>
-        <Route exact path="/clients">
-          <Clients />
-        </Route>
+
         <Route path="*" component={NotFound} />
+
       </Switch>
 
 
@@ -49,3 +54,12 @@ function App() {
 }
 
 export default App;
+
+/*
+<Route exact path="/consultants">
+          <Consultants />
+        </Route>
+        <Route exact path="/clients">
+          <Clients />
+        </Route>
+        */

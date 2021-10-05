@@ -19,13 +19,18 @@ export default function Login() {
         e.preventDefault();
         const data = new FormData(loginForm.current)
         const formToObject = Object.fromEntries(data.entries());
+        //console.log(formToObject.email)
+        //console.log(formToObject.password)
+
         fetch("http://localhost:5000/users/login", {
+        //fetch("https://s4b-consulting-user-api.herokuapp.com/users/login", {
             method: "POST",
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
             },
             "Access-Control-Allow-Origin": "http://localhost:5000",
+            //"Access-Control-Allow-Origin": "https://s4b-consulting-user-api.herokuapp.com",
             body: JSON.stringify(formToObject)
         })
             .then(response => {
@@ -55,7 +60,9 @@ export default function Login() {
 
 
     const logout = () => {
-        fetch("http://localhost:5000/users/logout", {
+        fetch("http://localhost:8080/users/logout", {
+        //fetch("https://s4b-consulting-user-api.herokuapp.com/users/logout", {
+
             credentials: 'include'
         })
             .then(response => {
@@ -85,11 +92,17 @@ export default function Login() {
     useEffect(() => {
         //console.log("from browser", document.cookie)
         fetch("http://localhost:5000/users/me", {
+        //fetch("https://s4b-consulting-user-api.herokuapp.com/users/me", {
+
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
             },
-            "Access-Control-Allow-Origin": "http://localhost:5000"
+            "Access-Control-Allow-Origin": "http://localhost:8080"
+            //"Access-Control-Allow-Origin": "https://s4b-consulting-user-api.herokuapp.com"
+
+            
+
         })
             .then(response => {
                 if (response.status !== 200) {
@@ -112,9 +125,9 @@ export default function Login() {
 
             {notification && <h2>{notification}</h2>}
             {/* <button onClick={logout}> logout </button> */}
-            {user && <p>{user.username}</p>}
-            {user && <p>{user.email}</p>}
-            {user && <p>{user.role}</p>}
+            {/* {user && <p>{user.username}</p>} */}
+            {/* {user && <p>{user.email}</p>} */}
+            {/* {user && <p>{user.role}</p>} */}
 
             <main className="form-signin">
                 <form ref={loginForm} onSubmit={login}>

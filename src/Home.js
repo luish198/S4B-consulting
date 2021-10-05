@@ -21,60 +21,33 @@ import MenuBar from "./mini-erp/MenuBar";
 
 //--------------------------------------end Components
 
-
 export default function Home() {
 
-    
+//---------------------------------------Component states global
+
+const [projectSelected, setProjectSelected] = useState("")
+const [productSelected, setProductSelected] = useState("")
+const [companyQuote, setCompanyQuote] = useState("")
+
+//---------------------------------------- End Component States global
 
 
     const [notification, setNotification] = useState();
     const history = useHistory();
     const [user, setUser] = useState(null);
 
-    const logout = () => {
-
-        fetch("http://localhost:5000/users/logout", {
-            credentials: 'include'
-        })
-            .then(response => {
-
-                if (response.status !== 200) {
-                    return response.json().then(data => { throw new Error(data.message) })
-                } else {
-
-                    return response.json();
-
-
-                }
-            })
-            .then(response => {
-                setUser(null);
-                // document.cookie = "cookie.sid= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-                setNotification(response.message);
-                history.push("/");
-                //window.location.href = "http://localhost:3000/";
-
-            })
-            .catch(error => {
-                setNotification(error.message);
-            })
-    }
-
 
     useEffect(() => {
 
         fetch("http://localhost:5000/users/checkSession", { credentials: 'include' })
+            //fetch("https://s4b-consulting-user-api.herokuapp.com/users/checkSession", { credentials: 'include' })
+
             .then((response) => response.json())
             .then((response) => {
                 //console.log(response.user.username)
                 setUser(response.user);
             })
     }, [])
-
-
-
-
-
 
 
 
@@ -86,16 +59,16 @@ export default function Home() {
                 <div>
                     {/* mini-erp area---------------------------------------------------- */}
 
-                    <MenuBar logout={logout}   />
+                    <MenuBar />
 
-                    
 
-                    <h1>Members Area ! V.I.P </h1>
 
-                    {notification && <h2>notification</h2>}
+                    {/* <h1>Members Area ! V.I.P </h1> */}
+
+                    {/* {notification && <h2>notification</h2>} */}
                     {user && <p>{user.username}</p>}
-                    {user && <p>{user.email}</p>}
-                    {user && <p>{user.role}</p>}
+                    {/* {user && <p>{user.email}</p>} */}
+                    {/* {user && <p>{user.role}</p>} */}
 
 
 
@@ -104,31 +77,39 @@ export default function Home() {
 
 
                     <Switch>
-                        <Route exact path="Ctrlpanel">
+                        <Route path="/home/Ctrlpanel">
                             <Ctrlpanel />
                         </Route>
-                        <Route exact path="/create-quote">
-                            <Createquote />
+                        <Route path="/home/createquote">
+                            <Createquote 
+                            projectSelected={projectSelected} 
+                            setProjectSelected={setProjectSelected}
+                            productSelected = {productSelected}
+                            setProductSelected = {setProductSelected}
+                              />
                         </Route>
-                        <Route exact path="/confirm-quote">
+                        <Route path="/home/confirm-quote">
                             <ConfirmOffer />
                         </Route>
-                        <Route exact path="/reports">
+                        <Route path="/home/reports">
                             <Reports />
                         </Route>
-                        <Route exact path="/clients">
+                        <Route path="/clients">
                             <Clients />
                         </Route>
-                        <Route exact path="/clientCreate">
+                        <Route path="/home/client-create">
                             <ClientCreate />
                         </Route>
-                        <Route exact path="/consultants">
+                        <Route path="/consultants">
                             <Consultants />
                         </Route>
-                        <Route exact path="/products">
+                        <Route path="/home/products">
                             <Products />
                         </Route>
-                        
+                        <Route path="/home/clients">
+                            <Clients />
+                        </Route>
+
 
 
                     </Switch>
