@@ -10,7 +10,7 @@ import axios from 'axios';
 
 export default function Products(){
 
-    const [clients, setClients] = useState()
+    const [products, setProducts] = useState()
     const [notification, setNotification] = useState();
     const [user, setUser] = useState(null);
     const history = useHistory();
@@ -27,7 +27,7 @@ export default function Products(){
 
               console.log("my sales axios respons...",response);
 
-              setClients(response.data)
+              setProducts(response.data)
             } catch (error) {
               console.error(error);
             }
@@ -46,7 +46,7 @@ export default function Products(){
     return (
         <>
 
-            {clients  ? (
+            {products? (
 
                 <div>
                     {/* <MenuBar /> */}
@@ -69,18 +69,21 @@ export default function Products(){
                                         <th>Product ID</th>
                                         <th>Item</th>
                                         <th>Ref</th>
+                                        <th>£ Price</th>
+
 
                                     </tr>
                                 </thead>
 
-                        {clients.map((cli) => (
+                        {products.map((pro) => (
 
                             
                                 <tbody>
                                     <tr>
-                                        <td>{cli.PRODUCT_ID}</td>
-                                        <td>{cli.product_name}</td>
-                                        <td>{cli.REPORT_PRODUCT}</td>
+                                        <td>{pro.PRODUCT_ID}</td>
+                                        <td>{pro.product_name}</td>
+                                        <td>{pro.REPORT_PRODUCT}</td>
+                                        <td>{pro.PRICE}</td>
 
                                     </tr>
 

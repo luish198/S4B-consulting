@@ -50,8 +50,13 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
 
     useEffect(() => {
 
-        postConfoWithRef()
+        if(quoteData){
 
+            postConfoWithRef()
+
+        }
+
+    
     }, [])
 
 
@@ -106,7 +111,6 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
         //axios.post('http://localhost:8080/orders/newconfirmation', {
         axios.post('https://s4b-consulting-api-mysql.herokuapp.com/orders/newconfirmation', {
 
-
             CONFIRMATION_REFERENCE: confoRef,
             PRECONFIRMATION_ID: quoteData[0].PRECONFIRMATION_ID
             //COMARKET_ID: quoteData[0].companyMarketSelectedForm,
@@ -114,27 +118,27 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
             //EMAIL: quoteData[0].clientEmail
         })
             .then((response) => {
-                console.log("inside the then ...")
-                console.log(response);
-                console.log("all good here...", response.status)
-                console.log(quoteData[0].PRECONFIRMATION_ID)
+                //console.log("inside the then ...")
+                //console.log(response);
+                //console.log("all good here...", response.status)
+                //console.log(quoteData[0].PRECONFIRMATION_ID)
 
                 setSaveConfoStatus("Confirmation Saved Successfully")
 
                 sentConfoEmail({quoteData})
 
-                console.log(response.quoteData[0]);
-                console.log(response.status);
+                //console.log(response.quoteData[0]);
+                //console.log(response.status);
 
 
             })
             .catch(function (error) {
-                console.log("inside the postQuote_Confirmed catch ...")
-                console.log(error);
-                //setSaveConfoStatus("There were a problem, Confirmation NOT Saved") ///----------------------here to fix it and bring it back to live when order is not saved !
-                //setEmailConfoStatus("Quote Email NOT sent, Please contact your Admin Team !")
+                //console.log("inside the postQuote_Confirmed catch ...")
+                //console.log(error);
+                setSaveConfoStatus("There were a problem, Confirmation NOT Saved") ///----------------------here to fix it and bring it back to live when order is not saved !
+                setEmailConfoStatus("Quote Email NOT sent, Please contact your Admin Team !")
                 //console.log("emailstatus", emailConfoStatus)
-                console.log("savestatus inside", saveConfoStatus)
+                //console.log("savestatus inside", saveConfoStatus)
             });
 
     }
@@ -165,7 +169,7 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
             "companyMarket": "Super Market",
             "phone": "+49176 5697 2222",
             "message": "Welcome On Board ! and Thank you again for your order",
-            "quoteKey": "SuperKey",
+            "quoteKey": "SuperKey"
 
         })
             .then(function (response) {
@@ -195,7 +199,7 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
     //emailConfoStatus && 
     return (
         <>
-            {saveConfoStatus ? (
+            {emailConfoStatus && saveConfoStatus ? (
                 <div>
                     <h3>{saveConfoStatus}</h3>
                     <h3>{emailConfoStatus}</h3>
