@@ -23,46 +23,46 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
     const doc = new jsPDF();
 
 
-    //console.log("this is data passed until client 2.. ...", quoteData[0].PRECONFIRMATION_ID)
+    //console.log("this is quoteData[0] passed until client 2.. ...", quoteData[0].PRECONFIRMATION_ID)
 
     //Posting the Quote Object to the DB........................
 
-    useEffect(() => {
+   /* useEffect(() => {
 
         if (quoteData.length !== 0) {
             //postQuote_Confirmed()
             doc.text("Order Confirmation", 80, 10);
             doc.text("Confirmation Reference", 18, 80);
-            doc.text(JSON.stringify(quoteData[0].PRECONFIRMATION_ID), 95, 80);
+            //doc.text(JSON.stringify(quoteData[0].PRECONFIRMATION_ID), 95, 80);
             doc.addImage("https://ik.imagekit.io/bwcdq46tkc8/s4b-consulting/s4b-logo-long_eZmAw6pklB_.png?updatedAt=1631192744046&tr=w-1200,h-628,fo-auto", "JPEG", 15, 20, 180, 40);
-            doc.save(process.cwd() +"a4.pdf");
+            //doc.save(process.cwd() +"a4.pdf");
 
-            
+
 
         } else {
-            setSaveConfoStatus("There were a problem, Confirmation NOT Saved")
+            //setSaveConfoStatus("There were a problem, Confirmation NOT Saved")
 
         }
 
 
-    }, [])
+    }, [])*/
 
 
-    useEffect(()=>{
+    useEffect(() => {
 
         postConfoWithRef()
 
-    },[])
+    }, [])
 
 
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        if(confoRef){
+        if (confoRef) {
             postQuote_Confirmed(confoRef)
-        }  
+        }
 
-    },[confoRef])
+    }, [confoRef])
 
 
 
@@ -71,43 +71,43 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
 
     //create the function to get post the Quote Confirmed to save in the DB as Confirmation -----------------
 
-        //Getting the Max Id and calling the postQuote_Confirmed function
+    //Getting the Max Id and calling the postQuote_Confirmed function
 
-        const postConfoWithRef = () => {
+    const postConfoWithRef = () => {
 
-            axios.get('http://localhost:8080/orders/confomaxref')
-                .then(function (response) {
-                    // handle success
-                    console.log("here is the response data for the max Confirmation Ref.....",typeof(response.data[0].MAX_CONFIRMATION_REFERENCE));
-                    setConfoRef(response.data[0].MAX_CONFIRMATION_REFERENCE + 1)
-                    //postQuote(QuoteRef)
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
-                .then(function () {
-                    // always executed
-                    console.log("Max Confirmation reference query done...")
-    
-                });
-    
-        }
+        axios.get('http://localhost:8080/orders/confomaxref')
+            .then(function (response) {
+                // handle success
+                console.log("here is the response  for the max Confirmation Ref.....", typeof (response.data[0].MAX_CONFIRMATION_REFERENCE));
+                setConfoRef(response.data[0].MAX_CONFIRMATION_REFERENCE + 1)
+                //postQuote(QuoteRef)
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+                console.log("Max Confirmation reference query done...")
+
+            });
+
+    }
 
 
-        //END of Getting the Max Id and calling the postQuote_Confirmed function
+    //END of Getting the Max Id and calling the postQuote_Confirmed function
 
 
 
 
     const postQuote_Confirmed = (confoRef) => {
         axios.post('http://localhost:8080/orders/newconfirmation', {
-            //CONFIRMATION_REFERENCE: "10010",
+
             CONFIRMATION_REFERENCE: confoRef,
             PRECONFIRMATION_ID: quoteData[0].PRECONFIRMATION_ID
-            //COMARKET_ID: data.companyMarketSelectedForm,
-            //MAIN_CONTACT: data.clientFirstName,
-            //EMAIL: data.clientEmail
+            //COMARKET_ID: quoteData[0].companyMarketSelectedForm,
+            //MAIN_CONTACT: quoteData[0].clientFirstName,
+            //EMAIL: quoteData[0].clientEmail
         })
             .then((response) => {
                 console.log("inside the then ...")
@@ -117,19 +117,19 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
 
                 setSaveConfoStatus("Confirmation Saved Successfully")
 
-                sentConfoEmail()
+                sentConfoEmail({quoteData})
 
-                console.log(response.data);
+                console.log(response.quoteData[0]);
                 console.log(response.status);
 
 
             })
             .catch(function (error) {
-                console.log("inside the catch ...")
+                console.log("inside the postQuote_Confirmed catch ...")
                 console.log(error);
                 setSaveConfoStatus("There were a problem, Confirmation NOT Saved")
-                setEmailConfoStatus("Quote Email NOT sent, Please contact your Admin Team !")
-                console.log("emailstatus", emailConfoStatus)
+                //setEmailConfoStatus("Quote Email NOT sent, Please contact your Admin Team !")
+                //console.log("emailstatus", emailConfoStatus)
                 console.log("savestatus inside", saveConfoStatus)
             });
 
@@ -141,36 +141,43 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
 
     //---------------------------------------------------------------------------------------------------
 
-        //Function to send the email--------------------------------
+    //Function to send the email--------------------------------
 
-        const sentConfoEmail = () => {
-            axios.post('http://localhost:8080/sent-invoice-email', {
+    const sentConfoEmail = () => {
+        console.log("here is the quote Data passed on to the email", quoteData)
 
-            
-                "Confirmation": confoRef,
-                "companyType": "Super Co",
-                "companyMarket": "Super Market",
-    
-                "phone": "+49176 5697 2222",
-                "message": "Welcome on Board ! please click here to confirm your quote",
-                "quoteKey": "SuperKey"
-            })
-                .then(function (response) {
-                    console.log(response);
-                    if (response.status === 200) {
-                        console.log("all good here...", response.status)
-                        setEmailConfoStatus("Invoice Email Sent Successfully to the client !")
-                    } else {
-                        console.log("error", response.status)
-                        setEmailConfoStatus("Invoice Email NOT sent, Please contact your Admin Team !")
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
+        axios.post('http://localhost:8080/sent-invoice-email', {
+
+            "Confirmation": confoRef,
+            "companyName": quoteData[0].COMPANY_NAME,
+            "companyType": quoteData[0].TYPECO_ID,
+            "companyMarket": quoteData[0].COMARKET_ID,
+            "companyEmail": quoteData[0].EMAIL,
+            "clientFirstName": quoteData[0].MAIN_CONTACT,
+            "netAmount": quoteData[0].NET_AMOUNT,
+            "companyType": "Super Co",
+            "companyMarket": "Super Market",
+            "phone": "+49176 5697 2222",
+            "message": "Welcome On Board ! and Thank you again for your order",
+            "quoteKey": "SuperKey",
+
+        })
+            .then(function (response) {
+                console.log(response);
+                if (response.status === 200) {
+                    console.log("all good here on invoice sent by email...", response.status)
+                    setEmailConfoStatus("Invoice Email Sent Successfully to the client !")
+                } else {
+                    console.log("error", response.status)
                     setEmailConfoStatus("Invoice Email NOT sent, Please contact your Admin Team !")
-                });
-        }
-        //end of Function to send the email ------------------------
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                setEmailConfoStatus("Invoice Email NOT sent, Please contact your Admin Team !")
+            });
+    }
+    //end of Function to send the email ------------------------
 
     //---------------------------------------------------------------------------------------------------
 
@@ -182,7 +189,7 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
     //emailConfoStatus && 
     return (
         <>
-            {saveConfoStatus ? (
+            {emailConfoStatus && saveConfoStatus ? (
                 <div>
                     <h3>{saveConfoStatus}</h3>
                     <h3>{emailConfoStatus}</h3>

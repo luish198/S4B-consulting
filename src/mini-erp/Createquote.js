@@ -41,7 +41,9 @@ export default function Createquote() {
     const [summary, setSummary] = useState(initialSummary)
 
     const onChange = (e) => {
+        
         const { name, value } = e.target;
+        console.log("for the email name and value....",name, value)
 
         const newData = {
             ...data,
@@ -49,7 +51,7 @@ export default function Createquote() {
         };
 
         setData(newData);
-        console.log("hereis the data",data)
+        console.log("hereis the dataxxx",data)
     }
 
     //end fey code

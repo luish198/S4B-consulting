@@ -16,7 +16,7 @@ export default function Clients() {
     const history = useHistory();
 
 
-    useEffect(() => {
+   /* useEffect(() => {
 
         //fetch("http://localhost:5000/users/checkSession", { credentials: 'include' })
             fetch("https://s4b-consulting-user-api.herokuapp.com/users/checkSession", { credentials: 'include' })
@@ -41,7 +41,7 @@ export default function Clients() {
 
             })
 
-    }, [])
+    }, [])*/
 
     
 
@@ -78,17 +78,17 @@ export default function Clients() {
 
 
 
-
+//&& user
 
     return (
         <>
 
-            {clients && user ? (
+            {clients  ? (
 
                 <div>
                     {/* <MenuBar /> */}
-                    <h1>Consultants here ....</h1>
-                    <h1>Members Area ! V.I.P </h1>
+                    {/* <h1>Consultants here ....</h1> */}
+                    <h2>Members Area Only ! V.I.P </h2>
 
 
                     {notification && <h2>{notification}</h2>}
@@ -106,6 +106,7 @@ export default function Clients() {
                                         <th>#</th>
                                         <th>Company Name</th>
                                         <th>Main Contact</th>
+                                        <th>Contact Email</th>
                                         <th>Town</th>
                                     </tr>
                                 </thead>
@@ -115,9 +116,10 @@ export default function Clients() {
                             
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
+                                        <td>{cli.CLIENT_ID}</td>
                                         <td>{cli.COMPANY_NAME}</td>
                                         <td>{cli.MAIN_CONTACT}</td>
+                                        <td>{cli.EMAIL}</td>
                                         <td>{cli.TOWN}</td>
 
 

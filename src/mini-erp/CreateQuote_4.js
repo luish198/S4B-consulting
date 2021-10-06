@@ -4,14 +4,17 @@ import Button from 'react-bootstrap/Button';
 import { HashLoader } from 'react-spinners'
 import axios from 'axios';
 import { Last } from "react-bootstrap/esm/PageItem";
+import Image from 'react-bootstrap/Image'
 
 export default function QuoteSummary({ data }) {
 
     const [saveStatus, setSaveStatus] = useState("")
+    const [okImage, setOkImage] = useState("")
     const [emailStatus, setEmailStatus] = useState("")
     const [lastClientId, setLastClientId] = useState("")
     const [lastPreconfoId, setLastPreconfoId] = useState("")
     const [QuoteRef, setQuoteRef] = useState("")
+
 
 
 
@@ -35,12 +38,12 @@ export default function QuoteSummary({ data }) {
 
     }, [lastClientId])
 
-   
+
 
     useEffect(() => {
 
         if (lastPreconfoId) {
-            
+
             postQuoteWithRef()
 
         }
@@ -53,7 +56,7 @@ export default function QuoteSummary({ data }) {
         if (QuoteRef) {
 
             postQuote(QuoteRef)
-            
+
         }
 
     }, [QuoteRef])
@@ -71,9 +74,12 @@ export default function QuoteSummary({ data }) {
             "companyName": data.companyQuoteForm,
             "companyType": data.companyTypeSelectedForm,
             "companyMarket": data.companyMarketSelectedForm,
-
+            "companyEmail": data.clientEmail,
+            "clientFirstName": data.clientFirstName,
+            "clientLastName": data.clientLastName,
+            "priceOffer": data.priceOffer,
             "phone": "+49176 5697 2222",
-            "message": "Welcome on Board ! please click here to confirm your quote",
+            "message": "We are looking forward to Welcoming you on Board soon ! please click here to confirm your quote",
             "quoteKey": data.quoteKey
         })
             .then(function (response) {
@@ -105,11 +111,15 @@ export default function QuoteSummary({ data }) {
             EMAIL: data.clientEmail
         })
             .then((response) => {
+
                 console.log("inside the then ...")
                 console.log(response);
                 console.log("all good here...", response.status)
 
                 setSaveStatus("Quote Saved Successfully")
+                setOkImage(true)
+
+
                 setLastClientId(response.data.insertId)
                 console.log("thelatest last client id before posting the confo", lastClientId)
 
@@ -124,9 +134,11 @@ export default function QuoteSummary({ data }) {
 
             })
             .catch(function (error) {
+                const failImage = `<Image src='https://ik.imagekit.io/bwcdq46tkc8/s4b-consulting/critical_RLQRVnFd-.png?updatedAt=1633510133720' roundedCircle />`
                 console.log("inside the catch ...")
                 console.log(error);
                 setSaveStatus("There were a problem, Quote NOT Saved")
+                setOkImage(false)
                 setEmailStatus("Quote Email NOT sent, Please contact your Admin Team !")
                 console.log("emailstatus", emailStatus)
                 console.log("savestatus inside", saveStatus)
@@ -196,7 +208,7 @@ export default function QuoteSummary({ data }) {
         axios.get('http://localhost:8080/clients/quotesmaxref')
             .then(function (response) {
                 // handle success
-                console.log("here is the response data for the max Quote Ref.....",typeof(response.data[0].MAX_QUOTE_REF));
+                console.log("here is the response data for the max Quote Ref.....", typeof (response.data[0].MAX_QUOTE_REF));
                 setQuoteRef(response.data[0].MAX_QUOTE_REF + 1)
                 //postQuote(QuoteRef)
             })
@@ -222,7 +234,6 @@ export default function QuoteSummary({ data }) {
             //QUOTE_REF: 100,
             CLIENT_ID: lastClientId,
             QUOTE_REF: QuoteRef,
-            //CLIENT_ID: 10,
             PRECONFIRMATION_ID: lastPreconfoId,
             QUOTECODE: data.quoteKey
 
@@ -230,6 +241,7 @@ export default function QuoteSummary({ data }) {
             .then(function (response) {
                 console.log(response);
                 console.log("all good here with quote...", response.status)
+
 
                 sentQuoteEmail()
 
@@ -256,6 +268,8 @@ export default function QuoteSummary({ data }) {
     console.log("last PreOrder Id here outside...", lastPreconfoId)
     console.log(QuoteRef)
 
+    console.log("the last data of the day....", data.clientEmail)
+
 
 
     return (
@@ -264,6 +278,18 @@ export default function QuoteSummary({ data }) {
                 <div>
                     <h3>{saveStatus}</h3>
                     <h3>{emailStatus}</h3>
+
+                    {okImage?
+                    <div>
+                        <Image src="https://ik.imagekit.io/bwcdq46tkc8/s4b-consulting/ok_YMgi1R5Ar.png?updatedAt=1633510133585" roundedCircle />
+                    </div>
+                    :
+                    <div>
+                    <Image src="https://ik.imagekit.io/bwcdq46tkc8/s4b-consulting/critical_RLQRVnFd-.png?updatedAt=1633510133720" roundedCircle />
+                    </div>}
+
+
+
                     <NavLink to="/home/Ctrlpanel">
                         <Button variant="primary">Go Back Home</Button>
                     </NavLink>

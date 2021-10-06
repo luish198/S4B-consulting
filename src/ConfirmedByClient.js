@@ -19,7 +19,7 @@ export default function ConfirmOffer_ByClient() {
 
     return (
         <>
-            <h1>Client will confirm here offer here ...</h1>
+            {/* <h1>Client will confirm here offer here ...</h1> */}
             
             <Switch>
                 
