@@ -43,7 +43,11 @@ export default function Ctrlpanel() {
         })*/
         //console.log("sales consol...",sales[0])    
 
-        axios.get('http://localhost:8080/users/sales')
+        
+
+        //axios.get('http://localhost:8080/users/sales')
+        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/sales')
+
             .then(function (response) {
                 // handle success
                 console.log(response);
@@ -84,7 +88,7 @@ export default function Ctrlpanel() {
                                 height={200}
                                 width={200}
                                 data={{
-                                    labels: ['Total Cases Confirmed', 'Total Cases Recovered', 'Total Deaths'],
+                                    labels: ['Total Quotes Confirmed', 'Total Quotes pending', 'Total Quotes Rejected'],
                                     datasets: [
                                         {
                                             label: "Global Covid Data",
@@ -102,7 +106,7 @@ export default function Ctrlpanel() {
                                 height={200}
                                 width={200}
                                 data={{
-                                    labels: ['New Cases Confirmed', 'New Cases Recovered'],
+                                    labels: ['Total Quotes', 'total Sales'],
                                     datasets: [
                                         {
                                             label: "Global Covid Data",

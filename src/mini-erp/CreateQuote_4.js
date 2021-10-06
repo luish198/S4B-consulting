@@ -69,7 +69,8 @@ export default function QuoteSummary({ data }) {
     //Function to send the email--------------------------------
 
     const sentQuoteEmail = () => {
-        axios.post('http://localhost:8080/sent-email', {
+        //axios.post('http://localhost:8080/sent-email', {
+        axios.post('https://s4b-consulting-api-mysql.herokuapp.com/sent-email', {
 
             "companyName": data.companyQuoteForm,
             "companyType": data.companyTypeSelectedForm,
@@ -103,7 +104,9 @@ export default function QuoteSummary({ data }) {
     //create the function to get post the info to save in the DB and then send email -----------------
 
     const postQuote_client = () => {
-        axios.post('http://localhost:8080/clients/newclient', {
+        //axios.post('http://localhost:8080/clients/newclient', {
+        axios.post('https://s4b-consulting-api-mysql.herokuapp.com/clients/newclient', {
+
             COMPANY_NAME: data.companyQuoteForm,
             TYPECO_ID: data.companyTypeSelectedForm,
             COMARKET_ID: data.companyMarketSelectedForm,
@@ -155,7 +158,9 @@ export default function QuoteSummary({ data }) {
     //create the function to post the Preconfirmation taken the client Id from previous post to save in the DB  -----------------
 
     const postNewPreconfo = () => {
-        axios.post('http://localhost:8080/orders/newpreorder', {
+        //axios.post('http://localhost:8080/orders/newpreorder', {
+        axios.post('https://s4b-consulting-api-mysql.herokuapp.com/orders/newpreorder', {
+
             PROJECT_ID: data.projectSelectedForm,
             CLIENT_ID: lastClientId,
             NET_AMOUNT: data.priceOffer
@@ -205,7 +210,9 @@ export default function QuoteSummary({ data }) {
 
     const postQuoteWithRef = () => {
 
-        axios.get('http://localhost:8080/clients/quotesmaxref')
+        //axios.get('http://localhost:8080/clients/quotesmaxref')
+        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/clients/quotesmaxref')
+
             .then(function (response) {
                 // handle success
                 console.log("here is the response data for the max Quote Ref.....", typeof (response.data[0].MAX_QUOTE_REF));
@@ -230,7 +237,9 @@ export default function QuoteSummary({ data }) {
     // Function to post a creation of a new quote after receiving the maxReference previously
 
     const postQuote = (QuoteRef) => {
-        axios.post('http://localhost:8080/clients/newquote', {
+        //axios.post('http://localhost:8080/clients/newquote', {
+        axios.post('https://s4b-consulting-api-mysql.herokuapp.com/clients/newquote', {
+
             //QUOTE_REF: 100,
             CLIENT_ID: lastClientId,
             QUOTE_REF: QuoteRef,

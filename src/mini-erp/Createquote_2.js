@@ -26,8 +26,8 @@ export default function CreatequoteClient({ onChange }) {
 
     //getting Generic Market for the dropdown........................
     useEffect(() => {
-        fetch("http://localhost:8080/clients/company-market")
-            //fetch("https://s4b-consulting-api.herokuapp.com/clients")
+        //fetch("http://localhost:8080/clients/company-market")
+            fetch("https://s4b-consulting-api-mysql.herokuapp.com/clients/company-market")
             .then(res => res.json())
             .then(data => {
                 setCMarket(data);

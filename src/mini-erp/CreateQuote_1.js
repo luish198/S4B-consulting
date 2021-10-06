@@ -49,8 +49,8 @@ export default function CreateQuote_1({ onChange, addToSummary, summary }) {
     //getting all Info for the dropdown........................
     useEffect(() => {
 
-        fetch("http://localhost:8080/projects")
-            //fetch("https://s4b-consulting-api.herokuapp.com/clients")
+        //fetch("http://localhost:8080/projects")
+            fetch("https://s4b-consulting-api-mysql.herokuapp.com/projects")
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -67,7 +67,9 @@ export default function CreateQuote_1({ onChange, addToSummary, summary }) {
             });
 
 
-        fetch("http://localhost:8080/products")
+            //fetch("http://localhost:8080/products")
+            fetch("https://s4b-consulting-api-mysql.herokuapp.com/products")
+
             //fetch("https://s4b-consulting-api.herokuapp.com/clients")
             .then((res2) => {
                 if (res2.ok) {
@@ -84,7 +86,9 @@ export default function CreateQuote_1({ onChange, addToSummary, summary }) {
                 console.log(error)
             });
 
-        fetch("http://localhost:8080/clients/company-type")
+            //fetch("http://localhost:8080/clients/company-type")
+            fetch("https://s4b-consulting-api-mysql.herokuapp.com/clients/company-type")
+
             //fetch("https://s4b-consulting-api.herokuapp.com/clients")
             .then((res3) => {
                 if (res3.ok) {

@@ -75,7 +75,9 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
 
     const postConfoWithRef = () => {
 
-        axios.get('http://localhost:8080/orders/confomaxref')
+        //axios.get('http://localhost:8080/orders/confomaxref')
+        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/orders/confomaxref')
+
             .then(function (response) {
                 // handle success
                 console.log("here is the response  for the max Confirmation Ref.....", typeof (response.data[0].MAX_CONFIRMATION_REFERENCE));
@@ -101,7 +103,9 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
 
 
     const postQuote_Confirmed = (confoRef) => {
-        axios.post('http://localhost:8080/orders/newconfirmation', {
+        //axios.post('http://localhost:8080/orders/newconfirmation', {
+        axios.post('https://s4b-consulting-api-mysql.herokuapp.com/orders/newconfirmation', {
+
 
             CONFIRMATION_REFERENCE: confoRef,
             PRECONFIRMATION_ID: quoteData[0].PRECONFIRMATION_ID
@@ -127,7 +131,7 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
             .catch(function (error) {
                 console.log("inside the postQuote_Confirmed catch ...")
                 console.log(error);
-                setSaveConfoStatus("There were a problem, Confirmation NOT Saved")
+                //setSaveConfoStatus("There were a problem, Confirmation NOT Saved") ///----------------------here to fix it and bring it back to live when order is not saved !
                 //setEmailConfoStatus("Quote Email NOT sent, Please contact your Admin Team !")
                 //console.log("emailstatus", emailConfoStatus)
                 console.log("savestatus inside", saveConfoStatus)
@@ -146,7 +150,9 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
     const sentConfoEmail = () => {
         console.log("here is the quote Data passed on to the email", quoteData)
 
-        axios.post('http://localhost:8080/sent-invoice-email', {
+        //axios.post('http://localhost:8080/sent-invoice-email', {
+        axios.post('https://s4b-consulting-api-mysql.herokuapp.com/sent-invoice-email', {
+
 
             "Confirmation": confoRef,
             "companyName": quoteData[0].COMPANY_NAME,
@@ -189,7 +195,7 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
     //emailConfoStatus && 
     return (
         <>
-            {emailConfoStatus && saveConfoStatus ? (
+            {saveConfoStatus ? (
                 <div>
                     <h3>{saveConfoStatus}</h3>
                     <h3>{emailConfoStatus}</h3>
@@ -199,8 +205,9 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
                 </div>
             )
                 : (
-                    <>
+                    <> 
                         <HashLoader />
+
                     </>
 
                 )

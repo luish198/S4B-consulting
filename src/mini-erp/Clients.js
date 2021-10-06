@@ -61,7 +61,9 @@ export default function Clients() {
 
         async function UserSales() {
             try {
-              const response = await axios.get('http://localhost:8080/clients');
+            //const response = await axios.get('http://localhost:8080/clients');
+            const response = await axios.get('https://s4b-consulting-api-mysql.herokuapp.com/clients');
+
               console.log("my sales axios respons...",response);
 
               setClients(response.data)

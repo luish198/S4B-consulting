@@ -24,7 +24,9 @@ export default function ConfirmOffer_ByClient_1({ quoteData, setQuoteData }) {
 
     useEffect(() => {
 
-        axios.get('http://localhost:8080/clients/quotes/' + quote_key)
+        //axios.get('http://localhost:8080/clients/quotes/' + quote_key)
+        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/clients/quotes/' + quote_key)
+
             .then(function (response) {
                 // handle success
                 console.log(response.data);
