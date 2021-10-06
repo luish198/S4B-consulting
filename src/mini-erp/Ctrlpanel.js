@@ -46,7 +46,7 @@ export default function Ctrlpanel() {
         
 
         //axios.get('http://localhost:8080/users/sales')
-        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/sales')
+        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/users/sales')
 
             .then(function (response) {
                 // handle success
