@@ -1,4 +1,4 @@
-.select {
+/*.select {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -18,4 +18,23 @@
   flex-direction: row;
   justify-content: space-between;
   
-  }
+  }*/
+
+  .spinner {
+    display: flex;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+}
+
+  @media(min-width: 450px){
+    
+    form {
+      width: 400px;
+    }
+    
+    form  {
+      width: 400px;
+      
+    }
+    }

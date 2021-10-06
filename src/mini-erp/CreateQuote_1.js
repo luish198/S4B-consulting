@@ -129,8 +129,6 @@ export default function CreateQuote_1({ onChange, addToSummary, summary }) {
 
 
 
-
-
                             <div className="form-floating">
 
                                 <Form.Text className="text-muted">
@@ -185,6 +183,8 @@ export default function CreateQuote_1({ onChange, addToSummary, summary }) {
                                     ))}
                                 </Form.Select>
 
+                                <hr/>
+
                                 <Form.Select aria-label="Default select example" onChange={(e) => { onChange(e); addToSummary("product", "Product Selected...") }}
                                     className="select" name="productSelectedForm" required
                                 >
@@ -195,6 +195,8 @@ export default function CreateQuote_1({ onChange, addToSummary, summary }) {
                                         </option>
                                     ))}
                                 </Form.Select>
+
+                                <hr/>
 
 
                                 {/* <label htmlFor="floatingPassword">project</label> */}
@@ -227,7 +229,7 @@ export default function CreateQuote_1({ onChange, addToSummary, summary }) {
                 :
                 (
                     <>
-                        <HashLoader />
+                        <div className="spinner"><HashLoader /></div>
                     </>
                 )
 

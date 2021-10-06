@@ -6,6 +6,7 @@ import {
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import { HashLoader } from 'react-spinners'
 
 
 export default function Clients() {
@@ -141,7 +142,7 @@ export default function Clients() {
             )
                 : (
                     <>
-                        "Loading..."
+                        <div className="spinner"><HashLoader /></div>
                         {notification && <h2>{notification}</h2>}
                     </>
                 )}

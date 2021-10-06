@@ -69,7 +69,7 @@ export default function MenuBar(){
 
 
 
-                                <Nav.Link  to="/home/confirm-quote"  as={Link} name="confirm-quote">Confirm Quote</Nav.Link>
+                                <Nav.Link  to="/home/confirm-quote"  as={Link} name="confirm-quote">Quotes</Nav.Link>
 
                                 <Nav.Link  to="/home/reports"  as={Link}  name="reports">Reports</Nav.Link>
 
@@ -95,7 +95,7 @@ export default function MenuBar(){
                                 <Button variant="outline-success" onClick={logout}>Logout</Button>
 
                                 {user?
-                                 <Nav.Link  name="user">User: {user && user.username}</Nav.Link> : "--"
+                                 <Nav.Link  name="user">User: {user && user.username}</Nav.Link> : ""
                                 }
 
                                 

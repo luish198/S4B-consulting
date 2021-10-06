@@ -2,6 +2,7 @@
 import { Doughnut } from 'react-chartjs-2'
 import { HashLoader } from 'react-spinners'
 import { useState, useEffect } from 'react'
+import '../Ctrlpanel.css'
 import axios from 'axios';
 
 export default function Ctrlpanel() {
@@ -74,21 +75,23 @@ export default function Ctrlpanel() {
 
     return (
         <>
-            <h1>Control Panel here ...</h1>
+            <h4>Performance Overview...</h4>
 
 
-            <>
+            <div className="graphs">
 
                 {covid.length ?
 
                     // <Panel className="panel" header={<h4>Global Pandemic Data</h4>} collapsible bordered>
-                    <div className="chart-container" style={{ position: 'relative', height: '10vh', width: '30vw' }}>
-                        <div className="covid">
+                    <div className="chart-container" 
+                    style={{ 
+                        display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'space-between'   }}>
+                        <div className="salesStats">
                             <Doughnut
                                 height={200}
                                 width={200}
                                 data={{
-                                    labels: ['Total Quotes Confirmed', 'Total Quotes pending', 'Total Quotes Rejected'],
+                                    labels: ['Quotes Confirmed', 'Quotes pending', 'Quotes Rejected'],
                                     datasets: [
                                         {
                                             label: "Global Covid Data",
@@ -102,6 +105,10 @@ export default function Ctrlpanel() {
                                 }}
 
                             />
+
+                            <hr/>
+
+
                             <Doughnut
                                 height={200}
                                 width={200}
@@ -127,8 +134,8 @@ export default function Ctrlpanel() {
                     </div>
 
 
-                    : <HashLoader />}
-            </>
+                    : <div className="spinner"><HashLoader /></div>}
+            </div>
 
 
 
@@ -139,3 +146,4 @@ export default function Ctrlpanel() {
     )
 }
 
+/*height: '15vh', width: '50vw'*/

@@ -24,10 +24,17 @@ export default function Main() {
                     <p className="tajam-menu">S4B Consulting</p>
                 </div>
 
+                <div className="heading1 center-text margin-text color-text-1" >
+                    <h1 className="hmargin">Luis Higuera</h1>
+                    <hr className="line" />
+                    <p className="margin-text">Web Development & Solutions for Business</p>
+                    <div className="img-avatar">..</div>
+                </div>
+
+
                 <div>
                     <ul className="main_menu">
                         <li>HOME</li>
-                        <li>ABOUT</li>
                         <li>PROJECTS</li>
                         <li>CONTACT</li>
                         <li><button onClick={goToLogin}>{login? "Back" : "Login"}</button></li>
@@ -35,12 +42,7 @@ export default function Main() {
                     </ul>
                 </div>
 
-                <div className="heading1 center-text margin-text color-text-1" >
-                    <h1 className="hmargin">Luis Higuera</h1>
-                    <hr className="line" />
-                    <p className="margin-text">Web Development & Solutions for Business</p>
-                    <div className="img-avatar">..</div>
-                </div>
+                
 
             </div>
 
@@ -50,9 +52,11 @@ export default function Main() {
             </div>
 
             
-            <div>footer</div>
+            <div>Helping Business 2 Do Business</div>
 
         </>
 
     )
 }
+
+//<li>ABOUT</li>

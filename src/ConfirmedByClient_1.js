@@ -138,7 +138,7 @@ export default function ConfirmOffer_ByClient_1({ quoteData, setQuoteData }) {
 
                             <div className="">
 
-                                {!checkedTc? 
+                                {checkedTc? 
 
                                 <NavLink to="/orderconfirmed/orderconfirmed_2">
                                     <Button variant="primary">Accept Quote</Button>
