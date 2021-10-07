@@ -13,7 +13,9 @@ import { HashLoader } from 'react-spinners'
 export default function QuoteSummary({ data, summary, addToSummary, companyType }) {
 
     const [quoteKey, setquoteKey] = useState()
-    //const [product, setProduct] = useState()
+    const [product, setProduct] = useState()
+    const [project, setProject] = useState()
+
 
 
     console.log(companyType)
@@ -27,12 +29,12 @@ export default function QuoteSummary({ data, summary, addToSummary, companyType 
     useEffect(() => {
         getProductById();
 
-    }, [summary.product])
+    }, [project])
 
     useEffect(() => {
         getProjectById();
 
-    }, [summary.project])
+    }, [product])
 
     
 
@@ -53,7 +55,7 @@ export default function QuoteSummary({ data, summary, addToSummary, companyType 
             .then(function (response) {
                 // handle success
                 console.log("Response from all products fetch for create quote 3", response.data[0].product_name)
-                //setProduct(response.data[0].product_name)
+                setProduct(response.data[0].product_name)
                 addToSummary("product", response.data[0].product_name)
             })
             .catch(function (error) {
@@ -75,7 +77,7 @@ export default function QuoteSummary({ data, summary, addToSummary, companyType 
             .then(function (response) {
                 // handle success
                 console.log("Response from all projects fetch for create quote 3", response.data[0].CLUB_NAME + response.data[0].PROJECTEDITION + response.data[0].YEAR)
-                //setProduct(response.data[0].product_name)
+                setProduct(response.data[0].CLUB_NAME + "--" + response.data[0].PROJECTEDITION + "--" + response.data[0].YEAR)
                 addToSummary("project", response.data[0].CLUB_NAME + "--" + response.data[0].PROJECTEDITION + "--" + response.data[0].YEAR)
             })
             .catch(function (error) {
