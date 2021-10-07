@@ -12,7 +12,7 @@ export default function CreatequoteClient({ onChange }) {
 
     const [cMarket, setCMarket] = useState()
 
-  
+
     //const [clientFormShow2, setClientFormShow2] = useState(true)
     //const quoteForm2 = useRef(null);
 
@@ -27,7 +27,7 @@ export default function CreatequoteClient({ onChange }) {
     //getting Generic Market for the dropdown........................
     useEffect(() => {
         //fetch("http://localhost:8080/clients/company-market")
-            fetch("https://s4b-consulting-api-mysql.herokuapp.com/clients/company-market")
+        fetch("https://s4b-consulting-api-mysql.herokuapp.com/clients/company-market")
             .then(res => res.json())
             .then(data => {
                 setCMarket(data);
@@ -76,6 +76,10 @@ export default function CreatequoteClient({ onChange }) {
                                 <label htmlFor="floatingInput">Client Email address</label>
                             </div>
 
+                            <Form.Text className="text-muted">
+                                ...
+                            </Form.Text>
+
                             <div className="form-floating">
                                 <input
                                     onChange={onChange}
@@ -89,6 +93,10 @@ export default function CreatequoteClient({ onChange }) {
                                 />
                                 <label htmlFor="floatingInput">Client First Name</label>
                             </div>
+
+                            <Form.Text className="text-muted">
+                                ...
+                            </Form.Text>
 
                             <div className="form-floating">
                                 <input
@@ -104,6 +112,8 @@ export default function CreatequoteClient({ onChange }) {
                                 <label htmlFor="floatingInput">Client Last Name</label>
                             </div>
 
+                            <hr/>
+
                             <div className="form-floating">
                                 <input
                                     onChange={onChange}
@@ -117,6 +127,8 @@ export default function CreatequoteClient({ onChange }) {
                                 />
                                 <label htmlFor="floatingInput"> £ Offer Net Price</label>
                             </div>
+
+                            <hr/>
 
                             <div className="form-floating">
 
@@ -132,6 +144,8 @@ export default function CreatequoteClient({ onChange }) {
                                     ))}
                                 </Form.Select>
                             </div>
+
+                            <hr/>
 
                             <NavLink to="/home/createquote/3">
 
@@ -149,7 +163,7 @@ export default function CreatequoteClient({ onChange }) {
 
                     </main>
 
-                    : <HashLoader/>}
+                    : <div className="spinner"><HashLoader /></div>}
             </div>
 
 

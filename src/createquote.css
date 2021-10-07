@@ -10,7 +10,7 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     width: 400px;
-  }
+  }*/
 
 .quoteButtons {
   display: flex;
@@ -18,7 +18,7 @@
   flex-direction: row;
   justify-content: space-between;
   
-  }*/
+  }
 
   .spinner {
     display: flex;
@@ -38,3 +38,35 @@
       
     }
     }
+
+   .homestart{
+    display: flex;
+    flex-direction: row;
+    height: 50vh;
+    justify-content:space-between;
+    align-items:center;
+    
+   }
+
+   @media(max-width: 800px){
+    
+    .homestart {
+      /* width: 400px; */
+    }
+    
+    .homestart {
+      /* width: 400px; */
+      flex-direction: column;
+      
+    }
+    }
+
+ .quoteCreated{
+
+    display: flex;
+    flex-direction:column;
+    height: 50vh;
+    justify-content:space-evenly;
+    align-items: center;
+
+ }

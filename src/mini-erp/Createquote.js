@@ -72,10 +72,10 @@ export default function Createquote() {
 
             <Switch>
                 <Route path="/home/createquote/4">
-                    <CreateQuote_4 data={data} />
+                    <CreateQuote_4 data={data} summary={summary} />
                 </Route>
                 <Route path="/home/createquote/3">
-                    <CreateQuote_3 data={data} summary={summary} />
+                    <CreateQuote_3 data={data} summary={summary} addToSummary={addToSummary} />
                 </Route>
                 <Route path="/home/createquote/2">
                     <Createquote_2 onChange={onChange} />

@@ -5,8 +5,9 @@ import { HashLoader } from 'react-spinners'
 import axios from 'axios';
 import { Last } from "react-bootstrap/esm/PageItem";
 import Image from 'react-bootstrap/Image'
+import "../createquote.css";
 
-export default function QuoteSummary({ data }) {
+export default function QuoteSummary({ data, summary }) {
 
     const [saveStatus, setSaveStatus] = useState("")
     const [okImage, setOkImage] = useState("")
@@ -14,9 +15,6 @@ export default function QuoteSummary({ data }) {
     const [lastClientId, setLastClientId] = useState("")
     const [lastPreconfoId, setLastPreconfoId] = useState("")
     const [QuoteRef, setQuoteRef] = useState("")
-
-
-
 
 
 
@@ -78,6 +76,8 @@ export default function QuoteSummary({ data }) {
             "companyEmail": data.clientEmail,
             "clientFirstName": data.clientFirstName,
             "clientLastName": data.clientLastName,
+            "product": summary.product,
+            "project": summary.project,
             "priceOffer": data.priceOffer,
             "phone": "+49176 5697 2222",
             "message": "We are looking forward to Welcoming you on Board soon ! please click here to confirm your quote",
@@ -284,7 +284,7 @@ export default function QuoteSummary({ data }) {
     return (
         <>
             {emailStatus && saveStatus ? (
-                <div>
+                <div className="quoteCreated">
                     <h3>{saveStatus}</h3>
                     <h3>{emailStatus}</h3>
 

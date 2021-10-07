@@ -15,6 +15,7 @@ import Clients from './mini-erp/Clients'
 import Consultants from './mini-erp/Consultants'
 import Products from './mini-erp/Products'
 import ClientCreate from './mini-erp/ClientCreate'
+import HomeStart from './mini-erp/HomeStart'
 
 import MenuBar from "./mini-erp/MenuBar";
 
@@ -109,6 +110,9 @@ const [companyQuote, setCompanyQuote] = useState("")
                         </Route>
                         <Route path="/home/clients">
                             <Clients />
+                        </Route>
+                        <Route path="/">
+                            <HomeStart />
                         </Route>
 
 

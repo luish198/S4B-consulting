@@ -152,7 +152,7 @@ export default function CreateQuote_1({ onChange, addToSummary, summary }) {
                                     ...
                                 </Form.Text>
 
-                                 <Form.Select aria-label="Default select example" onChange={(e) => { onChange(e); addToSummary("companyType","supertype") }}
+                                 <Form.Select aria-label="Default select example" onChange={onChange}
 
                                     className="select" name="companyTypeSelectedForm" required
                                 >
@@ -170,7 +170,7 @@ export default function CreateQuote_1({ onChange, addToSummary, summary }) {
 
 
 
-                                <Form.Select aria-label="Default select example" onChange={(e) => { onChange(e); addToSummary("project", "Project Selected...") }}
+                                <Form.Select aria-label="Default select example" onChange={onChange}
                                     className="select" name="projectSelectedForm" required
                                 >
                                     <option value=""  >Select your project here...</option>
@@ -185,7 +185,7 @@ export default function CreateQuote_1({ onChange, addToSummary, summary }) {
 
                                 <hr/>
 
-                                <Form.Select aria-label="Default select example" onChange={(e) => { onChange(e); addToSummary("product", "Product Selected...") }}
+                                <Form.Select aria-label="Default select example" onChange={onChange}
                                     className="select" name="productSelectedForm" required
                                 >
                                     <option value="" >Select a product here...</option>
