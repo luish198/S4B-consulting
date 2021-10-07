@@ -41,10 +41,10 @@ export default function ConfirmOffer_ByClient_1({ quoteData, setQuoteData }) {
 
     //Getting the Product information from the product Id 
     const getProductById = () => {
-        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/products/' + data.productSelectedForm)
+        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/products/' + quoteData.productSelectedForm)
             .then(function (response) {
                 // handle success
-                console.log("Response from all products fetch for create quote 3", response.data[0].product_name)
+                console.log("Response from all products fetch for create quote 3", response.quoteData[0].product_name)
                 setProduct(response.data[0].product_name)
                 //addToSummary("product", response.data[0].product_name)
             })
@@ -61,7 +61,7 @@ export default function ConfirmOffer_ByClient_1({ quoteData, setQuoteData }) {
 
     //Getting the Project information from the project Id 
     const getProjectById = () => {
-        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/projects/' + data.productSelectedForm)
+        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/projects/' + quoteData.productSelectedForm)
             .then(function (response) {
                 // handle success
                 console.log("Response from all projects fetch for create quote 3", response.data[0].CLUB_NAME + response.data[0].PROJECTEDITION + response.data[0].YEAR)
