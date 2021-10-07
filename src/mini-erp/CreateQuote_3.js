@@ -28,11 +28,13 @@ export default function QuoteSummary({ data, summary, addToSummary, companyType 
 
     useEffect(() => {
         getProductById();
+        addToSummary("product", product)
 
     }, [project])
 
     useEffect(() => {
         getProjectById();
+        addToSummary("project", project)
 
     }, [product])
 
@@ -112,7 +114,7 @@ export default function QuoteSummary({ data, summary, addToSummary, companyType 
                         <Card.Title>{data.companyQuoteForm}</Card.Title>
                         <Card.Text>
 
-                            {summary.product && summary.project ?
+                            {product && project ?
 
                                 < Table striped bordered hover size="sm">
                             <thead>
@@ -136,11 +138,11 @@ export default function QuoteSummary({ data, summary, addToSummary, companyType 
                                 </tr>
                                 <tr>
                                     <td>Product</td>
-                                    <td>{summary.product}</td>
+                                    <td>{product}</td>
                                 </tr>
                                 <tr>
                                     <td>Project</td>
-                                    <td>{summary.project}</td>
+                                    <td>{project}</td>
                                 </tr>
                                 <tr>
                                     <td>Company Type</td>
