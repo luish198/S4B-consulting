@@ -244,7 +244,8 @@ export default function QuoteSummary({ data, summary }) {
             CLIENT_ID: lastClientId,
             QUOTE_REF: QuoteRef,
             PRECONFIRMATION_ID: lastPreconfoId,
-            QUOTECODE: data.quoteKey
+            QUOTECODE: data.quoteKey,
+            QUOTESTATUS_ID: 1
 
         })
             .then(function (response) {
@@ -306,7 +307,7 @@ export default function QuoteSummary({ data, summary }) {
             )
                 : (
                     <>
-                        <HashLoader />
+                        <div className="spinner"><HashLoader /></div>
                     </>
 
                 )

@@ -15,12 +15,75 @@ export default function ConfirmOffer_ByClient_1({ quoteData, setQuoteData }) {
 
     const [checkedTc, setCheckTc] = useState(false);
 
+    const [product, setProduct] = useState()
+    const [project, setProject] = useState()
+
+
+
     const checkIt = (e)=>{
-        
         //console.log("for the tickbox....",e.target.checked)
         setCheckTc(e.target.checked)
-
     }
+
+    useEffect(() => {
+        getProductById();
+
+    }, [project])
+
+    useEffect(() => {
+        getProjectById();
+
+    }, [product])
+
+
+
+
+
+    //Getting the Product information from the product Id 
+    const getProductById = () => {
+        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/products/' + data.productSelectedForm)
+            .then(function (response) {
+                // handle success
+                console.log("Response from all products fetch for create quote 3", response.data[0].product_name)
+                setProduct(response.data[0].product_name)
+                //addToSummary("product", response.data[0].product_name)
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+                console.log("All products fetched ")
+            });
+    }
+    //END Getting the Product information from the product Id 
+
+    //Getting the Project information from the project Id 
+    const getProjectById = () => {
+        axios.get('https://s4b-consulting-api-mysql.herokuapp.com/projects/' + data.productSelectedForm)
+            .then(function (response) {
+                // handle success
+                console.log("Response from all projects fetch for create quote 3", response.data[0].CLUB_NAME + response.data[0].PROJECTEDITION + response.data[0].YEAR)
+                setProject(response.data[0].CLUB_NAME + "--" + response.data[0].PROJECTEDITION + "--" + response.data[0].YEAR)
+                //addToSummary("project", response.data[0].CLUB_NAME + "--" + response.data[0].PROJECTEDITION + "--" + response.data[0].YEAR)
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+                console.log("All projects fetched ")
+            });
+    }
+    //END Getting the Project information from the project Id
+
+
+
+
+
+
 
     useEffect(() => {
 
@@ -42,9 +105,9 @@ export default function ConfirmOffer_ByClient_1({ quoteData, setQuoteData }) {
 
             });
 
-        //console.log("clients consol...", Clients)
-
     }, [])
+
+
 
 
     useEffect(() => {
@@ -110,19 +173,19 @@ export default function ConfirmOffer_ByClient_1({ quoteData, setQuoteData }) {
                                         </tr>
                                         <tr>
                                             <td>Product</td>
-                                            {/* <td>{quoteData.product}</td> */}
+                                            <td>{product}</td>
                                         </tr>
                                         <tr>
                                             <td>Project</td>
-                                            {/* <td>{quoteData.project}</td> */}
+                                            <td>{project}</td>
                                         </tr>
                                         <tr>
                                             <td>Company Type</td>
-                                            {/* <td>{quoteData.companyType}</td> */}
+                                            <td>{quoteData.companyType}</td>
                                         </tr>
                                         <tr>
                                             <td>Company Market</td>
-                                            {/* <td>{quoteData.companyMarketSelectedForm}</td> */}
+                                            <td>{quoteData.companyMarketSelectedForm}</td>
                                         </tr>
                                     </tbody>
                                 </Table>

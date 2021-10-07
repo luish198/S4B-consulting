@@ -20,7 +20,7 @@ export default function ConfirmOffer_ByClient_2({ quoteData }) {
 
 
 
-    const doc = new jsPDF();
+    //const doc = new jsPDF();
 
 
     //console.log("this is quoteData[0] passed until client 2.. ...", quoteData[0].PRECONFIRMATION_ID)

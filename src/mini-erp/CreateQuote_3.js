@@ -77,7 +77,7 @@ export default function QuoteSummary({ data, summary, addToSummary, companyType 
             .then(function (response) {
                 // handle success
                 console.log("Response from all projects fetch for create quote 3", response.data[0].CLUB_NAME + response.data[0].PROJECTEDITION + response.data[0].YEAR)
-                setProduct(response.data[0].CLUB_NAME + "--" + response.data[0].PROJECTEDITION + "--" + response.data[0].YEAR)
+                setProject(response.data[0].CLUB_NAME + "--" + response.data[0].PROJECTEDITION + "--" + response.data[0].YEAR)
                 addToSummary("project", response.data[0].CLUB_NAME + "--" + response.data[0].PROJECTEDITION + "--" + response.data[0].YEAR)
             })
             .catch(function (error) {
